@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Memory Game | Lavida</title>
+   <!-- css file -->
+   <link rel="stylesheet" href="./css/fonts.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="./CSS/style.css" type="text/css" media="all" />
+</head>
+
+<body>
+   <!--- 
+    === SETUP VIEW ===
+    -->
+   <div class="settings-view">
+      <div class="settings">
+         <p class="logo">memory</p>
+         <div class="opts">
+            <!-- select theme group -->
+            <div class="opt">
+               <label class="label"> Select Theme</label>
+               <div class="flex">
+                  <label class="c-radio">
+                     <label for='numbers' class="opt-label">Numbers</label>
+                     <input type="radio" name="theme" id="numbers" checked>
+                     <span class="c-radio-bg"></span>
+                  </label>
+                  <label class="c-radio">
+                     <label for="icons" class="opt-label">flags</label>
+                     <input type="radio" name="theme" id="flags">
+                     <span class="c-radio-bg"></span>
+                  </label>
+               </div>
+            </div>
+            <!-- select players group -->
+            <div class="opt">
+               <label class="label"> Number of Players</label>
+               <div class="flex">
+                  <label class="c-radio">
+                     <label for='one' class="opt-label">1</label>
+                     <input type="radio" name="players" id="1" checked>
+                     <span class="c-radio-bg"></span>
+                  </label>
+                  <label class="c-radio">
+                     <label for="two" class="opt-label">2</label>
+                     <input type="radio" name="players" id="2">
+                     <span class="c-radio-bg"></span>
+                  </label>
+                  <label class="c-radio">
+                     <label for='three' class="opt-label">3</label>
+                     <input type="radio" name="players" id="3">
+                     <span class="c-radio-bg"></span>
+                  </label>
+                  <label class="c-radio">
+                     <label for="four" class="opt-label">4</label>
+                     <input type="radio" name="players" id="4">
+                     <span class="c-radio-bg"></span>
+                  </label>
+               </div>
+            </div>
+            <!-- select grid size group -->
+            <div class="opt">
+               <label class="label"> Grid Size</label>
+               <div class="flex">
+                  <label class="c-radio">
+                     <label for='4x4' class="opt-label">4x4</label>
+                     <input type="radio" name="gridSize" id="4x4" checked>
+                     <span class="c-radio-bg"></span>
+                  </label>
+                  <label class="c-radio">
+                     <label for="6x6" class="opt-label">6x6</label>
+                     <input type="radio" name="gridSize" id="6x6">
+                     <span class="c-radio-bg"></span>
+                  </label>
+               </div>
+            </div>
+            
+            <button class="btn-start-game">
+               Start Game
+            </button>
+         </div>
+      </div>
+   </div>
+   <!--
+    === Game View ===
+    -->
+   <div class="game-view hide">
+      <div class="header">
+         <p class="logo">memory</p>
+         <button class="btn-menu">Menu</button>
+         <div class="mobile-menu hide">
+            <button class="btn-restart">Restart</button>
+            <button class="btn-new-game">New Game</button>
+         </div>
+         <!-- for tablets & desktop screen sizes -->
+         <div class="desktop-menu">
+            <button class="btn-restart">Restart</button>
+            <button class="btn-new-game">New Game</button>
+         </div>
+      </div>
+      
+      <!-- CARDS BOARD [loaded Dynamically]-->
+      <div class="cards-container">
+      </div>
+      
+      <div class="stats">
+         <div class="stats-sp">
+            <div class="timer">
+               <p class="text-timer">Timer</p>
+               <p class="timer-count"><span class="minutes">0</span>:<span class="seconds">00</:span></p>
+            </div>
+            <div class="moves">
+               <p class="text-moves">Moves</p>
+               <p class="moves-count">0</p>
+            </div>
+         </div>
+         
+         <!-- multiplayer -->
+         <div class="stats-mp hide">
+         </div>
+      </div>
+   </div>
+   
+   <!--
+   === WIN POPUP ===
+   -->
+   <div class="modal-result-popup hide">
+      <p class="text-winner">You did it!</p>
+      <p class="text-message">Game over! Here's how you got on...</p>
+      
+      <!-- single player result -->
+      <div class="result-sp">
+         <div class="flex">
+            <p class="time-elapsed">Time Elapsed</p>
+            <p class="time-elapsed-count">0:00</p>
+         </div>
+         <div class="flex">
+            <p class="move-taken">Moves Taken</p>
+            <p class="moves-count">0 Moves</p>
+         </div>
+      </div>
+      
+      <!-- multiplayer result -->
+      <div class="result-mp hide">
+      </div>
+      
+      <button class="btn-restart">Restart</button>
+      <button class="btn-new-game"> Setup New Game</button>
+   </div>
+   <div class="overlay hide"></div>
+   
+   <script src="/JavaScript/script.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,521 @@
+/* ========================================================================== */
+/* CSS Variables */
+/* ========================================================================== */
+:root {
+   --color-white: hsla(0, 0%, 99%, 1);
+   --color-dark-tangerine: hsla(36, 98%, 54%, 1);
+   --color-arsenic: hsla(206, 29%, 27%, 1);
+   --color-silver: hsla(202, 28%, 79%, 1);
+   --color-prussian-blue: hsla(206, 44%, 15%, 1);
+   --color-anti-flash-white: hsla(208, 25%, 90%, 1);
+}
+
+/* ========================================================================== */
+/* Resets */
+/* ========================================================================== */
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   user-select: none;
+}
+
+label {
+   display: block;
+}
+
+button {
+   display: block;
+   border: none;
+   background: var(--color-dark-tangerine);
+   font: inherit;
+   width: 100%;
+}
+
+body {
+   font-family: "Atkinson Hyperlegible", sans-serif;
+   height: 100svh;
+}
+
+/* ========================================================================== */
+/*  SETUP VIEW */
+/* ========================================================================== */
+
+.settings-view {
+   background: var(--color-prussian-blue);
+   width: 100%;
+   height: 100svh;
+   position: relative;
+}
+
+.settings {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: min(90%, 600px);
+   animation: reveal 0.3s ease-in;
+}
+
+.settings .logo {
+   color: var(--color-white);
+   font-size: 2rem;
+   font-weight: bold;
+   letter-spacing: 2px;
+   text-align: center;
+   margin-block-end: 4rem
+}
+
+.settings .opts {
+   background: var(--color-white);
+   padding: 3rem 2rem;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+   gap: 2.7rem
+}
+
+.settings .label {
+   color: var(--color-arsenic);
+   font-size: 1.3rem;
+   font-weight: bold;
+   margin-block-end: .8rem;
+}
+
+.settings .flex {
+   display: flex;
+   justify-content: center;
+   gap: 2rem
+}
+
+.c-radio {
+   width: 100%;
+   height: 60px;
+   border-radius: 50px;
+   overflow: hidden;
+   position: relative;
+   
+}
+
+.c-radio input {
+   width: 0;
+   height: 0;
+   appearance: none;
+}
+
+.c-radio .opt-label {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   z-index: 2;
+   font-size: 1.3rem;
+   color: var(--color-white);
+   font-weight: 600;
+}
+
+.c-radio-bg {
+   display: block;
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background: var(--color-silver);
+   transition: background 0.2s ease-in-out;
+}
+
+.c-radio input:checked+.c-radio-bg {
+   background: var(--color-arsenic);
+}
+
+.btn-start-game {
+   height: 70px;
+   font-size: 1.5rem;
+   color: var(--color-white);
+   border-radius: 50px;
+   font-weight: bold;
+}
+
+/* ========================================================================== */
+/*  GAME VIEW */
+/* ========================================================================== */
+
+.game-view {
+   width: 100%;
+   height: 100svh;
+   padding: 3rem 2rem;
+}
+
+.game-view .header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   position: relative;
+}
+
+.game-view .logo {
+   font-size: 2rem;
+   letter-spacing: 2px;
+   font-weight: bold;
+   color: var(--color-prussian-blue);
+}
+
+.btn-menu {
+   width: 120px;
+   height: 60px;
+   text-align: center;
+   border-radius: 50px;
+   font-size: 1.5rem;
+   font-weight: bold;
+   color: var(--color-white);
+}
+
+.mobile-menu {
+   position: absolute;
+   top: 80px;
+   background: var(--color-white);
+   width: 100%;
+   height: 200px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 1rem;
+   border-radius: 10px;
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+   animation: mobile-menu 0.3s ease-in;
+   transform-origin: top right;
+}
+
+.btn-restart,
+.btn-new-game {
+   width: 70%;
+   height: 60px;
+   border-radius: 50px;
+   font-size: 1.3rem;
+   font-weight: bold;
+   color: var(--color-white);
+}
+
+.btn-new-game {
+   background: var(--color-anti-flash-white);
+   color: var(--color-arsenic);
+}
+
+.desktop-menu {
+   display: none;
+}
+
+
+/* --------------- Cards*/
+.cards-container {
+   margin: 5rem auto;
+   display: grid;
+   place-content: center;
+   gap: 1rem;
+   width: 500px;
+   animation: cards-container 0.5s ease;
+}
+
+.card {
+   perspective: 1000px;
+   border-radius: 100%;
+}
+
+.flipper {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   transform-style: preserve-3d;
+   transition: transform 0.3s ease-in;
+   border-radius: 100%;
+}
+
+.card.flipped .flipper {
+   transform: rotateY(180deg);
+}
+
+.back,
+.front {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   backface-visibility: hidden;
+   border-radius: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5rem;
+   font-weight: bold;
+}
+
+.front {
+   background: var(--color-silver);
+   color: var(--color-white);
+   transform: rotateY(180deg);
+}
+
+.front.match{
+   background: var(--color-dark-tangerine);
+   color: var(--color-silver);
+}
+
+.back {
+   background: var(--color-arsenic);
+}
+
+
+/* -------------- stats */
+.stats {
+   width: 100%;
+}
+
+/* single player stat*/
+.stats-sp {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 2rem;
+}
+
+.stats-sp .timer,
+.stats-sp .moves {
+   width: 100%;
+   background: var(--color-anti-flash-white);
+   height: 100px;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: .1rem;
+   color: var(--color-arsenic);
+}
+
+.stats-sp .timer-count,
+.stats-sp .moves-count {
+   font-size: 2.5rem;
+   font-weight: bold;
+}
+
+/* multiplayer stats*/
+.stats-mp {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 2rem
+}
+
+.stats-mp .stat {
+   width: 100%;
+   height: 130px;
+   border-radius: 10px;
+   background: var(--color-anti-flash-white);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: .1rem;
+   font-size: 1.2rem;
+   font-weight: bold;
+   color: var(--color-arsenic);
+   transition: background 0.3s ease;
+}
+
+.stat.player-turn{
+   background: var(--color-dark-tangerine);
+   color: var(--color-white);
+}
+
+.stats-mp .score {
+   font-size: 2rem;
+}
+
+.stats-sp,
+.stats-mp{
+   animation: stats 0.5s ease-in;
+}
+
+
+
+/* ========================================================================== */
+/*  MODAL RESULT POPUP*/
+/* ========================================================================== */
+.modal-result-popup {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background: var(--color-white);
+   z-index: 5;
+   width: min(90%, 600px);
+   padding: 3rem 2rem;
+   border-radius: 10px;
+   animation: reveal 0.5s ease;
+}
+
+.modal-result-popup .btn-restart,
+.modal-result-popup .btn-new-game {
+   height: 80px;
+   width: 100%;
+}
+
+.modal-result-popup .btn-restart {
+   margin-block-end: 1.5rem;
+}
+
+.text-winner {
+   font-size: 3rem;
+   font-weight: bold;
+   color: var(--color-arsenic);
+   letter-spacing: 1.5px;
+   text-align: center;
+}
+
+.text-message {
+   text-align: center;
+   color: var(--color-arsenic);
+   line-height: 2;
+   font-size: 1.2rem;
+}
+
+.result-sp,
+.result-mp {
+   margin-block: 3rem;
+}
+
+.result-mp .flex.winner {
+   background: var(--color-prussian-blue);
+   color: var(--color-white);
+}
+
+.result-sp .flex,
+.result-mp .flex {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   background: var(--color-anti-flash-white);
+   height: 80px;
+   margin-block-end: 1rem;
+   padding-inline: 1rem;
+   border-radius: 10px;
+   color: var(--color-arsenic);
+   
+}
+
+.result-sp .time-elapsed-count,
+.result-sp .moves-count,
+.result-mp .pairs-count {
+   font-size: 1.5rem;
+   font-weight: bold;
+}
+
+.overlay {
+   position: absolute;
+   left: 0%;
+   top: 0%;
+   bottom: 0;
+   right: 0;
+   background: black;
+   opacity: 0.6;
+   z-index: 4;
+}
+
+
+/* ========================================================================== */
+/*  ANIMATIONS */
+/* ========================================================================== */
+
+.hide {
+   display: none;
+}
+
+@keyframes reveal {
+   0% {
+      opacity: 0;
+      transform: translate(-50%, -50%)translateY(20px);
+   }
+   
+   100% {
+      opacity: 1;
+      transform: translate(-50%, -50%)translateY(0px);
+   }
+}
+
+@keyframes mobile-menu {
+   0% {
+      opacity: 0;
+      transform: scale(.8);
+   }
+   
+   100% {
+      opacity: 1;
+      transform: scale(1);
+   }
+}
+
+@keyframes cards-container {
+   0% {
+      opacity: 0;
+      transform: scale(.5);
+   }
+   
+   100% {
+      opacity: 1;
+      transform: scale(1);
+   }
+}
+
+@keyframes stats {
+   0%{
+      opacity: 0;
+      transform: translateY(20px);
+   }
+   
+   100%{
+      opacity: 1;
+      transform: translateY(0px);
+   }
+}
+/* ========================================================================== */
+/*  MEDIA QUERIES */
+/* ========================================================================== */
+
+/* Tablet > */
+@media (min-width: 768px) {
+   body {
+      width: 100%;
+      height: 100vh;
+   }
+   
+   /* GAME VIEW*/
+   .mobile-menu,
+   .btn--menu {
+      display: none;
+   }
+   
+   .tablet-btns {
+      display: flex;
+      gap: 1rem
+   }
+   
+   .btn--restart,
+   .btn--new-game {
+      width: 200px;
+      
+   }
+   
+   
+}
+
+/* laptop  > */
+@media (min-width: 1024px) {
+   
+   /* single player stats*/
+   .stats-sp {
+      border: 1px solid red;
+      width: fit-content;
+   }
+}
